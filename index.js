@@ -1,4 +1,3 @@
-// GET ELEMENTS
 const form = document.getElementById("visitorForm");
 const table = document.getElementById("visitorTable");
 const visitorId = document.getElementById("visitorId");
@@ -13,7 +12,7 @@ const photoInput = document.getElementById("photo");
 
 const API = "http://localhost:3000/visitors";
 
-// LOAD VISITORS 
+/* READ */
 function loadVisitors() {
   fetch(API)
     .then(res => res.json())
@@ -41,17 +40,15 @@ function loadVisitors() {
     });
 }
 
-//SAVE VISITOR
+/* CREATE + UPDATE */
 function saveVisitor(visitor) {
-  if (visitorId.value !== "") {
-    // UPDATE
+  if (visitorId.value) {
     fetch(`${API}/${visitorId.value}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(visitor)
     }).then(resetForm);
   } else {
-    // CREATE
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -60,7 +57,7 @@ function saveVisitor(visitor) {
   }
 }
 
-//FORM SUBMIT
+/* FORM SUBMIT */
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -68,7 +65,7 @@ form.addEventListener("submit", function (e) {
 
   if (file) {
     const reader = new FileReader();
-    reader.onload = function () {
+    reader.onload = () => {
       saveVisitor({
         name: nameInput.value,
         phone: phoneInput.value,
@@ -91,7 +88,7 @@ form.addEventListener("submit", function (e) {
   }
 });
 
-// EDIT VISITOR
+/* EDIT */
 function editVisitor(id) {
   fetch(`${API}/${id}`)
     .then(res => res.json())
@@ -106,16 +103,15 @@ function editVisitor(id) {
     });
 }
 
-//  DELETE VISITOR 
+/* DELETE */
 function deleteVisitor(id) {
   if (confirm("Are you sure you want to delete this visitor?")) {
-    fetch(`${API}/${id}`, {
-      method: "DELETE"
-    }).then(loadVisitors);
+    fetch(`${API}/${id}`, { method: "DELETE" })
+      .then(loadVisitors);
   }
 }
 
-//RESET FORM
+/* RESET */
 function resetForm() {
   form.reset();
   visitorId.value = "";
@@ -123,5 +119,5 @@ function resetForm() {
   loadVisitors();
 }
 
-//INITIAL LOAD
+/* INITIAL LOAD */
 loadVisitors();
