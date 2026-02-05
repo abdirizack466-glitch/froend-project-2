@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apartment Visitor Management</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container my-4">
+
+  <!-- Header -->
+ <h2 class="position-sticky text-center p-3 rounded mb-4 container-fluid">
+
+    
+
+    Apartment Visitor Management System
+  </h2>
+
+  <!-- Visitor Form -->
+  <form id="visitorForm" class="card p-3 mb-4">
+    <input type="hidden" id="visitorId">
+
+    <div class="row g-3">
+      <div class="col-md-6 col-12">
+        <input class="form-control" id="name" placeholder="Visitor Name" required>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <input class="form-control" id="phone" placeholder="Phone Number" required>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <input class="form-control" id="house" placeholder="House Number" required>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <input class="form-control" id="purpose" placeholder="Purpose of Visit" required>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <input class="form-control" id="date" type="date" required>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <input class="form-control" id="photo" type="file" accept="image/*">
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-4 w-50%" id="submitBtn">Add Visitor</button>
+  </form>
+
+  <!-- Visitor Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>House</th>
+          <th>Purpose</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="visitorTable"></tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
+
+</body>
+
+</html>
